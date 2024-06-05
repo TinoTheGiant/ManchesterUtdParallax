@@ -1,6 +1,8 @@
-
 document.addEventListener('DOMContentLoaded', function () {
     const hiddenSection = document.getElementById('hidden-section');
+    const scrollAudio = document.getElementById('scroll-audio');
+    const audioToggle = document.getElementById('audio-toggle');
+    let audioEnabled = false;
 
     // Function to show hidden section on scroll
     function showHiddenSection() {
@@ -9,6 +11,20 @@ document.addEventListener('DOMContentLoaded', function () {
             hiddenSection.style.display = 'block';
         } else {
             hiddenSection.style.display = 'none';
+        }
+    }
+
+    // Function to toggle audio
+    function toggleAudio() {
+        audioEnabled = !audioEnabled;
+        if (audioEnabled) {
+            scrollAudio.play().catch(error => {
+                console.log('Audio play was prevented:', error);
+            });
+            audioToggle.textContent = 'Audio On';
+        } else {
+            scrollAudio.pause();
+            audioToggle.textContent = 'Audio Off';
         }
     }
 
@@ -21,6 +37,9 @@ document.addEventListener('DOMContentLoaded', function () {
             window.removeEventListener('scroll', showHiddenSection);
         }
     }
+
+    // Toggle audio functionality
+    audioToggle.addEventListener('click', toggleAudio);
 
     // Initial check and event listener for window resize
     checkAndAddScrollListener();

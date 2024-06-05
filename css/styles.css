@@ -184,6 +184,29 @@ button:hover{
     transition: 2s;
 }
 
+
+.audio-toggle {
+  position: fixed;
+  left: 10px;
+  top: 95%;
+  transform: translateY(-90%);
+  background-color: #D30023;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  z-index: 1000;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.audio-toggle:hover {
+  background-color: #A0001B;
+}
+
+
+
+
   /*Section1*/
   .section1 {
 
@@ -710,25 +733,21 @@ b{
   }
 
   header {
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
     width: 100%;
     padding: 10px 0;
+    
 }
 
   header li {
-      display: block;
+      display: inline-block;
       padding: 10px 0;
   }
 
-  nav {
-      flex-direction: column;
-      align-items: flex-start;
-      width: 100%;
-  }
 
   #nav-logo {
-    font-size: 1.5em; /* Adjust logo size for mobile */
+    font-size: 1.1em; /* Adjust logo size for mobile */
 }
 
 .section1{
@@ -736,10 +755,12 @@ b{
 }
 .section1 h1{
   color: gold;
+
+  padding: 15px;
+  margin: 60px;
+  
 }
-aside {
-  display: none; /* Hide table of contents on mobile */
-}
+
 
 .toc { 
   display: none; /* Hide table of contents on mobile */
@@ -750,10 +771,14 @@ aside {
       padding: 10px;
   }
 
-  button {
+  .section1 button {
     width: 33.5%;
     padding: 15px;
-    margin: 10px 0; /* Adjust button layout for mobile */
+    margin: 10px auto; /* Adjust button layout for mobile */
+    position: absolute;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
     font-size: 1em; /* Adjust button font size for mobile */
   }
 
