@@ -204,7 +204,7 @@ describe('Manchester United Cross-Layer Integration Suite', () => {
     const headerJsPath = path.join(ROOT_DIR, 'js', 'header.js');
     const clubDataUiPath = path.join(ROOT_DIR, 'js', 'club-data-ui.js');
 
-    it('index.html and legends.html include club-data-ui.js, header.js, .nav-crest logo, #C70101 theme-color, #navbar progress bar, Google Fonts (Oswald, Bebas Neue, Source Sans 3, Barlow Condensed, Montserrat), Font Awesome, and Google Material Symbols (including home icon)', () => {
+    it('both pages include shared scripts, crest, theme color, scroll progress, Barlow Condensed and DM Sans, and navigation icons', () => {
       const indexHtml = fs.readFileSync(indexHtmlPath, 'utf8');
       const legendsHtml = fs.readFileSync(legendsHtmlPath, 'utf8');
 
@@ -238,12 +238,8 @@ describe('Manchester United Cross-Layer Integration Suite', () => {
           `${pageName} must include .nav-progress-container[role="progressbar"] > #nav-progress-bar.nav-progress-bar inside <header id="navbar">`
         );
         assert.ok(
-          html.includes('Oswald') &&
-            html.includes('Barlow+Condensed') &&
-            html.includes('Bebas+Neue') &&
-            html.includes('Montserrat') &&
-            html.includes('Source+Sans+3'),
-          `${pageName} must include Google Fonts link for Oswald, Barlow Condensed, Bebas Neue, Montserrat, and Source Sans 3`
+          html.includes('Barlow+Condensed') && html.includes('DM+Sans'),
+          `${pageName} must load the shared Barlow Condensed and DM Sans font pairing`
         );
         assert.ok(
           html.includes('Material+Symbols+Outlined'),
@@ -315,7 +311,7 @@ describe('Manchester United Cross-Layer Integration Suite', () => {
       }
     });
 
-    it('js/club-data-ui.js references /api/honours, /api/legends, /api/matchday, renders #mu-honours-bar and .mu-stat-badge, and mirrors ManUtd.com #C70101 red/white palette + Oswald/Bebas Neue/Source Sans 3 fonts + Font Awesome + Google Material Symbols icons', () => {
+    it('club data UI references all API endpoints and renders the trophy room, chapter statistics, and Material Symbols', () => {
       assert.ok(fs.existsSync(clubDataUiPath), 'js/club-data-ui.js must exist');
       const uiJs = fs.readFileSync(clubDataUiPath, 'utf8');
 
@@ -324,11 +320,6 @@ describe('Manchester United Cross-Layer Integration Suite', () => {
       assert.ok(uiJs.includes('/api/matchday'), 'js/club-data-ui.js must reference /api/matchday');
       assert.ok(uiJs.includes('mu-honours-bar'), 'js/club-data-ui.js must render #mu-honours-bar');
       assert.ok(uiJs.includes('mu-stat-badge'), 'js/club-data-ui.js must render .mu-stat-badge');
-      assert.match(uiJs, /--mu-red:\s*#C70101/i, 'js/club-data-ui.js must define --mu-red: #C70101');
-      assert.ok(uiJs.includes('Oswald'), 'js/club-data-ui.js must include Oswald display font');
-      assert.ok(uiJs.includes('Bebas Neue'), 'js/club-data-ui.js must include Bebas Neue display font');
-      assert.ok(uiJs.includes('Source Sans 3'), 'js/club-data-ui.js must include Source Sans 3 body font');
-      assert.ok(uiJs.includes('fa-solid'), 'js/club-data-ui.js must include Font Awesome fa-solid icons');
       assert.ok(
         uiJs.includes('material-symbols-outlined'),
         'js/club-data-ui.js must include Google Material Symbols (.material-symbols-outlined) icons'
@@ -336,45 +327,45 @@ describe('Manchester United Cross-Layer Integration Suite', () => {
     });
   });
 
-  describe('3. ManUtd.com Design, Nav Progress Bar & Parallax Preservation (css/styles.css, js/scroll.js, js/audio.js)', () => {
+  describe('3. Shared Design, Nav Progress Bar & Parallax Preservation (css/styles.css, js/scroll.js, js/audio.js)', () => {
     const cssPath = path.join(ROOT_DIR, 'css', 'styles.css');
     const scrollJsPath = path.join(ROOT_DIR, 'js', 'scroll.js');
     const audioJsPath = path.join(ROOT_DIR, 'js', 'audio.js');
     const indexHtmlPath = path.join(ROOT_DIR, 'index.html');
     const legendsHtmlPath = path.join(ROOT_DIR, 'legends.html');
 
-    it('css/styles.css defines official ManUtd.com design tokens (--mu-red: #C70101), red #navbar, white .sections h1 headings, .nav-progress-container / #nav-progress-bar styles, Google Fonts (Oswald, Bebas Neue, Source Sans 3, Barlow Condensed, Montserrat), and Font Awesome', () => {
+    it('shared CSS defines United red, charcoal, ivory, display and body typography, the fixed masthead, readable headings, and scroll progress', () => {
       const css = fs.readFileSync(cssPath, 'utf8');
 
       assert.match(css, /--mu-red:\s*#C70101/i, 'css/styles.css must define --mu-red: #C70101');
-      assert.match(css, /--mu-charcoal:\s*#1A1A1A/i, 'css/styles.css must define --mu-charcoal: #1A1A1A');
-      assert.match(css, /--mu-black:\s*#141414/i, 'css/styles.css must define --mu-black: #141414');
-      assert.match(css, /--mu-white:\s*#FFFFFF/i, 'css/styles.css must define --mu-white: #FFFFFF');
+      assert.match(css, /--mu-charcoal:\s*#1B1C1E/i, 'css/styles.css must define the charcoal surface');
+      assert.match(css, /--mu-black:\s*#111214/i, 'css/styles.css must define the carbon background');
+      assert.match(css, /--mu-white:\s*#F5F2EB/i, 'css/styles.css must define warm ivory text');
       assert.match(
         css,
-        /--font-display:\s*[^;]*Oswald[^;]*Bebas Neue[^;]*Barlow Condensed/i,
-        'css/styles.css must define --font-display with Oswald, Bebas Neue, and Barlow Condensed'
+        /--font-display:\s*[^;]*Barlow Condensed/i,
+        'css/styles.css must define Barlow Condensed as its display font'
       );
       assert.match(
         css,
-        /--font-body:\s*[^;]*Source Sans 3[^;]*Montserrat/i,
-        'css/styles.css must define --font-body with Source Sans 3 and Montserrat'
+        /--font-body:\s*[^;]*DM Sans/i,
+        'css/styles.css must define DM Sans as its body font'
       );
 
       const navbarBlockMatch = css.match(/header,\s*#navbar\s*\{([^}]*)\}/i);
       assert.ok(navbarBlockMatch, 'css/styles.css must style header, #navbar');
       assert.match(
         navbarBlockMatch[1],
-        /background-color:\s*(var\(--mu-red\)|#C70101)/i,
-        '#navbar must use official ManUtd.com red background (var(--mu-red) / #C70101)'
+        /position:\s*fixed/i,
+        '#navbar must remain available whilst moving between full-screen chapters'
       );
 
-      const sectionsH1Match = css.match(/\.sections\s+h1[\s\S]*?\{([^}]*)\}/i);
+      const sectionsH1Match = css.match(/\.sections\s+h1\s*\{([^}]*)\}/i);
       assert.ok(sectionsH1Match, 'css/styles.css must style .sections h1');
       assert.match(
         sectionsH1Match[1],
         /color:\s*(var\(--mu-white\)|#FFFFFF)/i,
-        '.sections h1 must use crisp white (var(--mu-white) / #FFFFFF) rather than yellow headings'
+        '.sections h1 must use the shared ivory text color'
       );
 
       assert.match(
@@ -388,12 +379,8 @@ describe('Manchester United Cross-Layer Integration Suite', () => {
         'css/styles.css must style #nav-progress-bar and .nav-progress-bar'
       );
 
-      assert.ok(css.includes('Oswald'), 'css/styles.css must import/use Oswald');
-      assert.ok(css.includes('Bebas Neue'), 'css/styles.css must import/use Bebas Neue');
-      assert.ok(css.includes('Source Sans 3'), 'css/styles.css must import/use Source Sans 3');
       assert.ok(css.includes('Barlow Condensed'), 'css/styles.css must import/use Barlow Condensed');
-      assert.ok(css.includes('Montserrat'), 'css/styles.css must import/use Montserrat');
-      assert.ok(css.includes('font-awesome'), 'css/styles.css must import Font Awesome');
+      assert.ok(css.includes('DM Sans'), 'css/styles.css must use DM Sans');
       assert.ok(
         css.includes('.material-symbols-outlined'),
         'css/styles.css must style .material-symbols-outlined Google icons'

@@ -281,13 +281,6 @@
         }
     };
 
-    function createFontAwesomeIcon(iconClasses) {
-        const icon = document.createElement('i');
-        icon.className = iconClasses;
-        icon.setAttribute('aria-hidden', 'true');
-        return icon;
-    }
-
     function createMaterialSymbol(symbolName, extraClass) {
         const span = document.createElement('span');
         span.className = extraClass
@@ -296,252 +289,6 @@
         span.setAttribute('aria-hidden', 'true');
         span.textContent = symbolName;
         return span;
-    }
-
-    function injectClubDataStyles() {
-        if (typeof document === 'undefined' || !document.head) return;
-        if (document.getElementById('mu-club-data-styles')) return;
-
-        const style = document.createElement('style');
-        style.id = 'mu-club-data-styles';
-        style.textContent = `
-            :root {
-                --mu-red: #C70101;
-                --mu-red-bright: #DA291C;
-                --mu-red-dark: #9E0000;
-                --mu-charcoal: #1A1A1A;
-                --mu-black: #141414;
-                --mu-surface: #242424;
-                --mu-white: #FFFFFF;
-                --mu-grey: #D0D0D0;
-                --font-display: 'Oswald', 'Bebas Neue', 'Barlow Condensed', sans-serif;
-                --font-body: 'Source Sans 3', 'Montserrat', Arial, sans-serif;
-            }
-
-            #mu-honours-bar.mu-honours-bar {
-                width: 100%;
-                background: linear-gradient(90deg, var(--mu-black, #141414) 0%, var(--mu-charcoal, #1A1A1A) 50%, var(--mu-black, #141414) 100%);
-                color: var(--mu-white, #FFFFFF);
-                border-bottom: 2px solid var(--mu-red, #C70101);
-                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.55);
-                padding: 9px 32px;
-                display: flex;
-                flex-wrap: wrap;
-                align-items: center;
-                justify-content: space-between;
-                gap: 10px 20px;
-                font-family: var(--font-display, 'Oswald', 'Bebas Neue', 'Barlow Condensed', sans-serif);
-                text-transform: uppercase;
-                letter-spacing: 0.06em;
-                z-index: 1000;
-                box-sizing: border-box;
-            }
-
-            .mu-honours-motto {
-                display: inline-flex;
-                align-items: center;
-                flex-wrap: wrap;
-                gap: 8px;
-                font-family: var(--font-display, 'Oswald', 'Bebas Neue', 'Barlow Condensed', sans-serif);
-                font-size: 0.98rem;
-                font-weight: 700;
-                color: var(--mu-white, #FFFFFF);
-                letter-spacing: 0.08em;
-            }
-
-            .mu-honours-motto .fa-shield-halved,
-            .mu-honours-motto-icon {
-                color: var(--mu-red, #C70101);
-                font-size: 0.95rem;
-                filter: drop-shadow(0 0 6px rgba(199, 1, 1, 0.55));
-            }
-
-            .mu-honours-google-icon,
-            .mu-stat-google-icon {
-                font-size: 1.05em;
-                line-height: 1;
-                vertical-align: middle;
-                color: var(--mu-red, #C70101);
-                display: inline-flex;
-                align-items: center;
-            }
-
-            .mu-honours-motto .mu-honours-google-icon {
-                color: var(--mu-red, #C70101);
-            }
-
-            .mu-honours-featured {
-                display: inline-flex;
-                align-items: center;
-                gap: 6px;
-                background: var(--mu-red, #C70101);
-                border: 1px solid var(--mu-red, #C70101);
-                color: var(--mu-white, #FFFFFF);
-                padding: 3px 12px;
-                border-radius: 999px;
-                font-family: var(--font-display, 'Oswald', 'Bebas Neue', 'Barlow Condensed', sans-serif);
-                font-size: 0.86rem;
-                font-weight: 700;
-                letter-spacing: 0.06em;
-                box-shadow: 0 2px 10px rgba(199, 1, 1, 0.35);
-            }
-
-            .mu-honours-featured .mu-honours-google-icon,
-            .mu-honours-featured .fa-trophy {
-                color: var(--mu-white, #FFFFFF);
-            }
-
-            .mu-honours-list {
-                display: flex;
-                flex-wrap: wrap;
-                align-items: center;
-                gap: 8px 12px;
-                list-style: none;
-                margin: 0;
-                padding: 0;
-            }
-
-            .mu-honours-item {
-                display: inline-flex;
-                align-items: center;
-                gap: 6px;
-                padding: 3px 10px;
-                background-color: rgba(255, 255, 255, 0.05);
-                border: 1px solid rgba(255, 255, 255, 0.14);
-                border-left: 3px solid var(--mu-red, #C70101);
-                border-radius: 999px;
-                font-family: var(--font-display, 'Oswald', 'Bebas Neue', 'Barlow Condensed', sans-serif);
-                font-size: 0.94rem;
-                font-weight: 700;
-                letter-spacing: 0.05em;
-                color: var(--mu-white, #FFFFFF);
-                white-space: nowrap;
-                transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
-            }
-
-            .mu-honours-item:hover {
-                background-color: rgba(199, 1, 1, 0.22);
-                border-color: var(--mu-red, #C70101);
-                transform: translateY(-1px);
-            }
-
-            .mu-honours-item .fa-trophy {
-                color: var(--mu-red, #C70101);
-                font-size: 0.78rem;
-                margin-right: 2px;
-            }
-
-            .mu-honours-count {
-                color: var(--mu-white, #FFFFFF);
-                background-color: var(--mu-red, #C70101);
-                padding: 1px 7px;
-                border-radius: 999px;
-                font-weight: 700;
-                font-size: 0.96rem;
-                line-height: 1.2;
-            }
-
-            .mu-honours-label {
-                color: var(--mu-white, #FFFFFF);
-                font-weight: 700;
-            }
-
-            .mu-stat-badge {
-                display: flex;
-                flex-wrap: wrap;
-                align-items: center;
-                justify-content: center;
-                gap: 6px 10px;
-                margin-top: 12px;
-                padding: 7px 16px;
-                background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(20, 20, 20, 0.98) 100%);
-                border: 1px solid rgba(255, 255, 255, 0.16);
-                border-left: 4px solid var(--mu-red, #C70101);
-                border-radius: 6px;
-                box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
-                font-family: var(--font-display, 'Oswald', 'Bebas Neue', 'Barlow Condensed', sans-serif);
-                font-size: clamp(0.88rem, 1.08vw, 1.02rem);
-                font-weight: 700;
-                letter-spacing: 0.06em;
-                line-height: 1.3;
-                text-transform: uppercase;
-                color: var(--mu-white, #FFFFFF);
-                text-shadow: none;
-            }
-
-            .mu-stat-badge > span {
-                display: inline-flex;
-                align-items: center;
-                gap: 4px;
-                color: var(--mu-white, #FFFFFF);
-            }
-
-            .mu-stat-badge .fa-trophy {
-                color: var(--mu-red, #C70101);
-                font-size: 0.82em;
-            }
-
-            .mu-stat-badge .fa-shield-halved {
-                color: var(--mu-red, #C70101);
-                font-size: 0.82em;
-            }
-
-            .mu-stat-badge .mu-stat-years {
-                color: var(--mu-white, #FFFFFF);
-                background-color: var(--mu-red, #C70101);
-                padding: 2px 9px;
-                border-radius: 999px;
-                font-weight: 700;
-            }
-
-            .mu-stat-badge .mu-stat-years .fa-shield-halved,
-            .mu-stat-badge .mu-stat-years .mu-stat-google-icon {
-                color: var(--mu-white, #FFFFFF);
-            }
-
-            .mu-stat-badge .mu-stat-trophies,
-            .mu-stat-badge .mu-stat-appearances,
-            .mu-stat-badge .mu-stat-goals {
-                color: var(--mu-white, #FFFFFF);
-                font-weight: 700;
-            }
-
-            .mu-stat-badge .mu-stat-highlight {
-                color: var(--mu-white, #FFFFFF);
-                font-family: var(--font-body, 'Source Sans 3', 'Montserrat', Arial, sans-serif);
-                font-size: clamp(0.76rem, 0.92vw, 0.86rem);
-                font-weight: 600;
-                letter-spacing: 0.03em;
-            }
-
-            .mu-stat-badge .mu-stat-sep {
-                color: var(--mu-red, #C70101);
-                font-weight: 700;
-            }
-
-            @media (max-width: 768px) {
-                #mu-honours-bar.mu-honours-bar {
-                    padding: 8px 16px;
-                    justify-content: center;
-                    text-align: center;
-                }
-
-                .mu-honours-motto {
-                    justify-content: center;
-                    font-size: 0.86rem;
-                }
-
-                .mu-honours-list {
-                    justify-content: center;
-                    gap: 6px 12px;
-                }
-
-                .mu-honours-item {
-                    font-size: 0.86rem;
-                }
-            }
-        `;
-        document.head.appendChild(style);
     }
 
     function renderHonoursBar(honoursData, matchdayData) {
@@ -559,50 +306,36 @@
             bar.id = 'mu-honours-bar';
             bar.className = 'mu-honours-bar';
             bar.setAttribute('role', 'region');
-            bar.setAttribute('aria-label', 'Manchester United Honours Ticker');
+            bar.setAttribute('aria-label', 'Manchester United trophy room');
 
             const navbar = document.getElementById('navbar') || document.querySelector('header');
             const main = document.querySelector('main.main') || document.querySelector('main');
-            if (navbar && navbar.parentNode) {
+            if (main && main.parentNode) {
+                main.insertAdjacentElement('afterend', bar);
+            } else if (navbar && navbar.parentNode) {
                 navbar.insertAdjacentElement('afterend', bar);
-            } else if (main) {
-                main.insertAdjacentElement('afterbegin', bar);
             } else if (document.body) {
-                document.body.insertAdjacentElement('afterbegin', bar);
+                document.body.appendChild(bar);
             }
         }
 
         const stadium = (matchday && matchday.stadium ? matchday.stadium : 'Old Trafford').toUpperCase();
         const motto = (matchday && matchday.motto ? matchday.motto : 'Youth, Courage, Greatness').toUpperCase();
-        const featuredHonour = matchday && matchday.featuredHonour
-            ? matchday.featuredHonour
-            : '20-Time English Champions';
-
         bar.textContent = '';
 
         const mottoWrapper = document.createElement('div');
         mottoWrapper.className = 'mu-honours-motto';
 
         const stadiumGoogleIcon = createMaterialSymbol('stadium', 'mu-honours-google-icon');
-        const shieldIcon = createFontAwesomeIcon('fa-solid fa-shield-halved mu-honours-motto-icon');
 
         const mottoText = document.createElement('span');
         mottoText.className = 'mu-honours-motto-text';
         mottoText.textContent = `${stadium} • ${motto}`;
 
-        const featuredSpan = document.createElement('span');
-        featuredSpan.className = 'mu-honours-featured';
-        featuredSpan.appendChild(createMaterialSymbol('military_tech', 'mu-honours-google-icon'));
-        featuredSpan.appendChild(document.createTextNode(' '));
-        featuredSpan.appendChild(createFontAwesomeIcon('fa-solid fa-trophy'));
-        featuredSpan.appendChild(document.createTextNode(featuredHonour));
-
         mottoWrapper.appendChild(stadiumGoogleIcon);
         mottoWrapper.appendChild(document.createTextNode(' '));
-        mottoWrapper.appendChild(shieldIcon);
         mottoWrapper.appendChild(mottoText);
         mottoWrapper.appendChild(document.createTextNode(' '));
-        mottoWrapper.appendChild(featuredSpan);
 
         const list = document.createElement('ul');
         list.className = 'mu-honours-list';
@@ -615,9 +348,7 @@
                 li.setAttribute('title', item.competition);
             }
 
-            li.appendChild(createMaterialSymbol('emoji_events', 'mu-honours-google-icon'));
             li.appendChild(document.createTextNode(' '));
-            li.appendChild(createFontAwesomeIcon('fa-solid fa-trophy'));
 
             const countSpan = document.createElement('span');
             countSpan.className = 'mu-honours-count';
@@ -655,15 +386,12 @@
         return badge;
     }
 
-    function appendStatPart(badge, text, className, faIconClass, materialSymbolName) {
+    function appendStatPart(badge, text, className, materialSymbolName) {
         const span = document.createElement('span');
         span.className = className;
         if (materialSymbolName) {
             span.appendChild(createMaterialSymbol(materialSymbolName, 'mu-stat-google-icon'));
             span.appendChild(document.createTextNode(' '));
-        }
-        if (faIconClass) {
-            span.appendChild(createFontAwesomeIcon(faIconClass));
         }
         span.appendChild(document.createTextNode(text));
         badge.appendChild(span);
@@ -700,11 +428,11 @@
                 era.majorTrophies === 1 ? 'Major Trophy' : 'Major Trophies'
             }`;
 
-            appendStatPart(badge, era.years, 'mu-stat-years', 'fa-solid fa-shield-halved', 'stadium');
+            appendStatPart(badge, era.years, 'mu-stat-years');
             appendSeparator(badge);
-            appendStatPart(badge, trophyLabel, 'mu-stat-trophies', 'fa-solid fa-trophy', 'emoji_events');
+            appendStatPart(badge, trophyLabel, 'mu-stat-trophies', 'emoji_events');
             appendSeparator(badge);
-            appendStatPart(badge, era.highlight, 'mu-stat-highlight', null, 'military_tech');
+            appendStatPart(badge, era.highlight, 'mu-stat-highlight');
 
             renderedCount += 1;
         });
@@ -736,13 +464,13 @@
             const badge = upsertStatBadge(section, 'legend', legend.id);
             if (!badge) return;
 
-            appendStatPart(badge, legend.years, 'mu-stat-years', 'fa-solid fa-shield-halved', 'stadium');
+            appendStatPart(badge, legend.years, 'mu-stat-years');
             appendSeparator(badge);
-            appendStatPart(badge, `${legend.appearances} Appearances`, 'mu-stat-appearances', null, 'military_tech');
+            appendStatPart(badge, `${legend.appearances} Appearances`, 'mu-stat-appearances');
             appendSeparator(badge);
             appendStatPart(badge, `${legend.goals} Goals`, 'mu-stat-goals');
             appendSeparator(badge);
-            appendStatPart(badge, `${legend.trophies} Major Trophies`, 'mu-stat-trophies', 'fa-solid fa-trophy', 'emoji_events');
+            appendStatPart(badge, `${legend.trophies} Major Trophies`, 'mu-stat-trophies', 'emoji_events');
 
             if (legend.honourHighlight) {
                 badge.setAttribute('title', `${legend.role ? legend.role + ' — ' : ''}${legend.honourHighlight}`);
@@ -783,8 +511,6 @@
 
     async function initClubDataUI() {
         if (typeof document === 'undefined') return null;
-
-        injectClubDataStyles();
 
         // Render immediately using built-in static fallback so file:// or static hosting works identically
         renderHonoursBar(FALLBACK_CLUB_DATA.honours, FALLBACK_CLUB_DATA.matchday);
