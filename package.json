@@ -8,7 +8,11 @@
   },
   "scripts": {
     "start": "node server.js",
-    "test": "node --test tests/cross-layer.test.js"
+    "build": "node scripts/build.mjs",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
   },
   "license": "MIT"
 }

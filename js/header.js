@@ -59,6 +59,9 @@
         if (!navbar) return;
 
         const { progressContainer, progressBar } = ensureNavProgressBar(navbar);
+        const nativeProgress = typeof CSS !== 'undefined' &&
+            CSS.supports('animation-timeline: scroll(root block)');
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
         let lastScrollTop = 0;
         let ticking = false;
@@ -72,7 +75,11 @@
         function updateScrollProgress() {
             const scrollable = document.documentElement.scrollHeight - window.innerHeight;
             const pct = scrollable > 0 ? Math.min(100, Math.max(0, (window.scrollY / scrollable) * 100)) : 0;
-            progressBar.style.width = pct.toFixed(2) + '%';
+            if (!nativeProgress || reducedMotion.matches) {
+                progressBar.style.width = pct.toFixed(2) + '%';
+            } else if (progressBar.style.width) {
+                progressBar.style.removeProperty('width');
+            }
             progressContainer.setAttribute('aria-valuenow', String(Math.round(pct)));
         }
 

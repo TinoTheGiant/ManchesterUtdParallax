@@ -6,6 +6,7 @@
     <meta name="description" content="Explore the iconic legends of Manchester United's modern era, from Sir Alex Ferguson to Wayne Rooney and Cristiano Ronaldo.">
     <meta name="theme-color" content="#C70101">
     <meta name="color-scheme" content="dark">
+    <link rel="preload" as="image" href="assets/oldtraffoird.jpg" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap">
@@ -61,7 +62,7 @@
                 </ul>
             </aside>
 
-            <audio id="scroll-audio" src="audio/GloryGloryManUtd.mp3" preload="auto"></audio>
+            <audio id="scroll-audio" src="audio/GloryGloryManUtd.mp3" preload="metadata" loop></audio>
             <button id="audio-toggle" class="audio-toggle" type="button" aria-label="Toggle background audio" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">music_note</span><i class="fa-solid fa-music" aria-hidden="true" style="display:none"></i></button>
 
             <!-- legend1 -->
@@ -205,11 +206,13 @@
         </footer>
     </div>
 
+    <script src="js/lazy.js"></script>
     <script src="js/header.js"></script>
     <script src="js/button.js"></script>
     <script src="js/scroll.js"></script>
     <script src="js/hide.js"></script>
     <script src="js/audio.js"></script>
     <script src="js/club-data-ui.js"></script>
+    <script src="js/experience.js"></script>
 </body>
 </html>
