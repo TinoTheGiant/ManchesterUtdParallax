@@ -3,149 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="description" content="">
-    <link rel="stylesheet" href="/css/styles.css">
-  
-    <title>The Modern History 0f Manchester Utd</title>
+    <meta name="description" content="Explore the iconic legends of Manchester United's modern era, from Sir Alex Ferguson to Wayne Rooney and Cristiano Ronaldo.">
+    <meta name="theme-color" content="#C70101">
+    <meta name="color-scheme" content="dark light">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="assets/logo2.jpg" type="image/jpeg">
+    <link rel="shortcut icon" href="assets/logo2.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <title>The Modern History Of Manchester Utd</title>
 </head>
-
-
-
-
-
-
-<div class="container">
 <body>
+    <div class="container">
+        <header id="navbar">
+            <a id="nav-logo" href="index.html"><img src="assets/logo.png" alt="Manchester United Crest" class="nav-crest" width="40" height="40"><h3>Manchester United History</h3></a>
+            <nav aria-label="Primary navigation">
+                <ul id="nav-links">
+                    <li><a href="index.html"><span class="material-symbols-outlined nav-icon" aria-hidden="true">home</span>Home</a></li>
+                    <li class="active"><a id="active" href="legends.html" aria-current="page"><span class="material-symbols-outlined nav-icon" aria-hidden="true">emoji_events</span>Legends</a></li>
+                </ul>
+            </nav>
+            <div class="nav-progress-container" role="progressbar" aria-label="Page scroll progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="nav-progress-bar" class="nav-progress-bar"></div></div>
+        </header>
 
-    <header>
-        <a id="nav-logo" href="/index.html"><h3>Manchester United History</h3></a>
-        <nav>
-            <ul id="nav-links">
-                <li><a href="/index.html">Home</a></li>
-                <li class="active"><a id ="active"href="/legends.html">Legends</a></li>
-                
-            </ul>
-        </nav>
-    </header>
-   
-      <main class="main">
-        <!-- section1-->
-        <section class="section1" id="explore">
-           <h1>Learn About The Modern History Of Manchester Utd</h1>
-           <button onclick="scrollToSection()">Explore</button>
-        </section>
+        <main class="main">
+            <!-- section1 -->
+            <section class="section1" id="explore" data-slide="0" data-speed="50">
+                <h1>Learn About The Modern History Of Manchester Utd</h1>
+                <button type="button" onclick="scrollToSection()" aria-label="Explore Manchester United Legends">Explore <span class="material-symbols-outlined" aria-hidden="true">expand_more</span><i class="fa-solid fa-chevron-down" aria-hidden="true" style="display:none"></i></button>
+            </section>
 
-        <!-- section2-->
-        <section class="legend1" id="early90s">
-            
-        </section>
+            <aside class="toc" id="hidden-section" aria-label="Legends table of contents">
+                <ul>
+                    <li data-slide="1"><a href="#siralex">Sir Alex Ferguson</a></li>
+                    <li data-slide="2"><a href="#keane">Roy Keane</a></li>
+                    <li data-slide="3"><a href="#beckham">David Beckham</a></li>
+                    <li data-slide="4"><a href="#scholes">Paul Scholes</a></li>
+                    <li data-slide="5"><a href="#cantona">Eric Cantona</a></li>
+                    <li data-slide="6"><a href="#neville">Gary Neville</a></li>
+                    <li data-slide="7"><a href="#ronaldo">Cristiano Ronaldo</a></li>
+                    <li data-slide="8"><a href="#rooney">Wayne Rooney</a></li>
+                    <li data-slide="9"><a href="#ruud">Ruud van Nistelrooy</a></li>
+                    <li data-slide="10"><a href="#vandersar">Edwin van der Sar</a></li>
+                    <li data-slide="11"><a href="#schmeichel">Peter Schmeichel</a></li>
+                    <li data-slide="12"><a href="#solskjaer">Ole Gunnar Solskjær</a></li>
+                    <li data-slide="13"><a href="#cole">Andy Cole</a></li>
+                    <li data-slide="14"><a href="#giggs">Ryan Giggs</a></li>
+                    <li data-slide="15"><a href="#ferdinand">Rio Ferdinand</a></li>
+                    <li data-slide="16"><a href="#vidic">Nemanja Vidić</a></li>
+                    <li data-slide="17"><a href="#evra">Patrice Evra</a></li>
+                </ul>
+            </aside>
 
-        <!-- section3-->
-        <section class="legend2" id="mid90s">
-            
-        </section>
+            <audio id="scroll-audio" src="audio/GloryGloryManUtd.mp3" preload="auto"></audio>
+            <button id="audio-toggle" class="audio-toggle" type="button" aria-label="Toggle background audio" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">music_note</span><i class="fa-solid fa-music" aria-hidden="true" style="display:none"></i></button>
 
-        <!-- section4-->
-        <section class="legend3" id="late90s">
-           
-        </section>
+            <!-- legend1 -->
+            <section class="legend1 sections" id="siralex" data-slide="1" data-speed="50">
+                <h1>Sir Alex Ferguson</h1>
+                <hr>
+                <p>The greatest manager in football history, Sir Alex Ferguson led Manchester United from 1986 to 2013, winning 38 major trophies including 13 Premier League titles, five FA Cups, and two UEFA Champions League crowns.</p>
+            </section>
 
-        <!-- section5-->
-        <section class="legend4" id="early2000s">
+            <!-- legend2 -->
+            <section class="legend2 sections" id="keane" data-slide="2" data-speed="50">
+                <h1>Roy Keane</h1>
+                <hr>
+                <p>The ultimate captain and midfield general, Roy Keane drove Manchester United's dominance across 12 years at Old Trafford, winning seven Premier League titles and inspiring the historic 1999 Treble campaign.</p>
+            </section>
 
-        </section>
+            <!-- legend3 -->
+            <section class="legend3 sections" id="beckham" data-slide="3" data-speed="50">
+                <h1>David Beckham</h1>
+                <hr>
+                <p>A jewel of the famous Class of '92, David Beckham dazzled Old Trafford with his pinpoint crossing, trademark free-kicks, and tireless work ethic, winning six Premier League titles and the 1999 UEFA Champions League.</p>
+            </section>
 
-        <!-- section6-->
-        <section class="legend5" id="mid2000s">
+            <!-- legend4 -->
+            <section class="legend4 sections" id="scholes" data-slide="4" data-speed="50">
+                <h1>Paul Scholes</h1>
+                <hr>
+                <p>Revered by peers as one of the finest midfielders of his generation, Paul Scholes spent his entire career at Manchester United, making 718 appearances, scoring thunderous long-range goals, and winning 11 Premier League titles.</p>
+            </section>
 
-        </section>
+            <!-- legend5 -->
+            <section class="legend5 sections" id="cantona" data-slide="5" data-speed="50">
+                <h1>Eric Cantona</h1>
+                <hr>
+                <p>Known simply as "King Eric" to the Old Trafford faithful, Eric Cantona arrived in 1992 with his iconic upturned collar and swagger, serving as the catalyst for Manchester United's 1990s dynasty with four league titles in five seasons.</p>
+            </section>
 
-        <!-- section7-->
-        <section class="legend6" id="mid2000s">
+            <!-- legend6 -->
+            <section class="legend6 sections" id="neville" data-slide="6" data-speed="50">
+                <h1>Gary Neville</h1>
+                <hr>
+                <p>A fiercely loyal one-club man and Class of '92 graduate, Gary Neville made 602 appearances at right-back for Manchester United, captaining the side and capturing eight Premier League titles and two UEFA Champions League trophies.</p>
+            </section>
 
-        </section>
+            <!-- legend7 -->
+            <section class="legend7 sections" id="ronaldo" data-slide="7" data-speed="50">
+                <h1>Cristiano Ronaldo</h1>
+                <hr>
+                <p>Arriving as a teenage prodigy in 2003, Cristiano Ronaldo transformed into the world's best player at Old Trafford, winning three consecutive Premier League titles, the 2008 UEFA Champions League, and the 2008 Ballon d'Or.</p>
+            </section>
 
-        <!-- section8-->
-        <section class="legend7" id="late2000s">
+            <!-- legend8 -->
+            <section class="legend8 sections" id="rooney" data-slide="8" data-speed="50">
+                <h1>Wayne Rooney</h1>
+                <hr>
+                <p>Manchester United's all-time leading goalscorer with 253 goals in 559 appearances, Wayne Rooney combined relentless passion with world-class brilliance to win every major club honour available at Old Trafford.</p>
+            </section>
 
-        </section>
+            <!-- legend9 -->
+            <section class="legend9 sections" id="ruud" data-slide="9" data-speed="50">
+                <h1>Ruud van Nistelrooy</h1>
+                <hr>
+                <p>One of the most lethal strikers ever to grace the Premier League, Ruud van Nistelrooy scored an astonishing 150 goals in just 219 appearances for Manchester United between 2001 and 2006.</p>
+            </section>
 
-        <!-- section9-->
-        <section class="legend8" id="early2010s">
+            <!-- legend10 -->
+            <section class="legend10 sections" id="vandersar" data-slide="10" data-speed="50">
+                <h1>Edwin van der Sar</h1>
+                <hr>
+                <p>Calm, commanding, and composed, Edwin van der Sar anchored United's defence to four Premier League titles, set a world-record 1,311-minute clean-sheet streak, and made the decisive penalty save in the 2008 Champions League final.</p>
+            </section>
 
-        </section>
+            <!-- legend11 -->
+            <section class="legend11 sections" id="schmeichel" data-slide="11" data-speed="50">
+                <h1>Peter Schmeichel</h1>
+                <hr>
+                <p>The "Great Dane" redefined goalkeeping in the 1990s with his towering presence and acrobatic saves, captaining Manchester United in the 1999 UEFA Champions League final to complete the historic Treble.</p>
+            </section>
 
-        <!-- section10-->
-        <section class="legend9" id="mid2010s">
+            <!-- legend12 -->
+            <section class="legend12 sections" id="solskjaer" data-slide="12" data-speed="50">
+                <h1>Ole Gunnar Solskjær</h1>
+                <hr>
+                <p>Immortalized for scoring the injury-time winner against Bayern Munich in the 1999 Champions League final, the "Baby-Faced Assassin" scored 126 goals for United before later returning to manage the club.</p>
+            </section>
 
-        </section>
+            <!-- legend13 -->
+            <section class="legend13 sections" id="cole" data-slide="13" data-speed="50">
+                <h1>Andy Cole</h1>
+                <hr>
+                <p>A prolific goalscorer who formed a legendary strike partnership with Dwight Yorke, Andy Cole netted 121 goals in 275 appearances for Manchester United, playing a pivotal role in five Premier League titles and the 1999 Treble.</p>
+            </section>
 
-        <!-- section11-->
-        <section class="legend10" id="early2020s">
+            <!-- legend14 -->
+            <section class="legend14 sections" id="giggs" data-slide="14" data-speed="50">
+                <h1>Ryan Giggs</h1>
+                <hr>
+                <p>Manchester United's all-time appearance record holder with 963 matches across 24 seasons, Ryan Giggs is the most decorated player in English football history, winning 13 Premier League titles and two Champions League trophies.</p>
+            </section>
 
-        </section>
+            <!-- legend15 -->
+            <section class="legend15 sections" id="ferdinand" data-slide="15" data-speed="50">
+                <h1>Rio Ferdinand</h1>
+                <hr>
+                <p>The epitome of a modern ball-playing centre-back, Rio Ferdinand combined elegance and athleticism across 455 appearances for Manchester United, winning six Premier League titles and the 2008 UEFA Champions League.</p>
+            </section>
 
-        <!-- section12-->
-        <section class="legend12" id="today">
+            <!-- legend16 -->
+            <section class="legend16 sections" id="vidic" data-slide="16" data-speed="50">
+                <h1>Nemanja Vidić</h1>
+                <hr>
+                <p>A fearless warrior at the heart of defence alongside Rio Ferdinand, club captain Nemanja Vidić won five Premier League titles, the 2008 Champions League, and two Premier League Player of the Season awards.</p>
+            </section>
 
-        </section>
+            <!-- legend17 -->
+            <section class="legend17 sections" id="evra" data-slide="17" data-speed="50">
+                <h1>Patrice Evra</h1>
+                <hr>
+                <p>Adored for his infectious passion and attacking flair down the left flank, Patrice Evra made 379 appearances for Manchester United, winning five Premier League titles and the 2008 UEFA Champions League.</p>
+            </section>
+        </main>
 
+        <footer id="footer" aria-label="Site footer">
+            <div class="column">
+                <ul aria-label="Footer navigation">
+                    <li><a href="index.html"><span class="material-symbols-outlined" aria-hidden="true">home</span>Home</a></li>
+                    <li><a href="#siralex"><span class="material-symbols-outlined" aria-hidden="true">history_edu</span>About</a></li>
+                    <li><a href="legends.html" aria-current="page"><span class="material-symbols-outlined" aria-hidden="true">emoji_events</span>Legends</a></li>
+                    <li><a href="#footer"><span class="material-symbols-outlined" aria-hidden="true">mail</span>Contact</a></li>
+                    <li><a href="#explore"><span class="material-symbols-outlined" aria-hidden="true">work</span>Portfolio</a></li>
+                </ul>
+            </div>
 
-    <!-- section13-->
-    <section class="legend13" id="today">
+            <div class="column">
+                <i>&copy;2023 Tino Kaseke</i>
+            </div>
 
-    </section>
-
-
-    <!-- section14-->
-    <section class="legend14" id="today">
-
-    </section>
-
-
-    <!-- section15-->
-    <section class="legend15" id="today">
-
-    </section>
-
-    <!-- section16-->
-    <section class="legend16" id="today">
-
-     </section>
-
-    <!-- section17-->
-    <section class="legend17" id="today">
-
-    </section>
-
-
-      </main>
-</body>
-<script src="/js/header.js"></script>
-<script src="/js/button.js"></script>
-
-<footer>
-
-    <div class="column">
-        <ul>
-            <li><a href="/index.html">Home</a></li>
-            <li><a href="/about.html">About</a></li>
-            <li><a href="legends.html">Legends</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href=""></a>Portfolio</li>
-        </ul>
+            <div class="column">
+                <img src="assets/logo.png" alt="Manchester United logo" loading="lazy" decoding="async">
+            </div>
+        </footer>
     </div>
 
-<div class="column">
-    <i>&copy;2023 Tino Kaseke</i>
-</div>
-
-<div class="column">
-<img src="/assets/logo.png" alt="logo">
-</div>
-    
-</footer>
-</div>
-
+    <script src="js/header.js"></script>
+    <script src="js/button.js"></script>
+    <script src="js/scroll.js"></script>
+    <script src="js/hide.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/club-data-ui.js"></script>
+</body>
 </html>

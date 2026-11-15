@@ -1,0 +1,11 @@
+{
+  "name": "manchester-utd-history",
+  "version": "1.0.0",
+  "description": "The Modern History of Manchester United — Official ManUtd.com inspired interactive parallax web application and Node.js backend API.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test tests/cross-layer.test.js"
+  },
+  "license": "MIT"
+}

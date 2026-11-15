@@ -1,7 +1,34 @@
-
 function scrollToSection() {
-    // Get a reference to the section you want to scroll to
-    var section = document.getElementById("early90s"); // Replace with the desired section ID
-    // Scroll to the section
-    section.scrollIntoView({ behavior: "smooth" }); // "smooth" adds a smooth scrolling effect
+    const exploreSection = document.getElementById('explore') || document.querySelector('.section1');
+    let targetSection = null;
+
+    // Find the first <section> element after #explore
+    if (exploreSection) {
+        let next = exploreSection.nextElementSibling;
+        while (next) {
+            if (next.tagName && next.tagName.toUpperCase() === 'SECTION') {
+                targetSection = next;
+                break;
+            }
+            next = next.nextElementSibling;
+        }
+    }
+
+    // Fallback selectors for both index.html and legends.html
+    if (!targetSection) {
+        targetSection = document.querySelector(
+            'main section[data-slide="1"], main .sections, main .section2, main .legend1, #early90s, #siralex'
+        );
+    }
+
+    if (targetSection) {
+        const prefersReducedMotion =
+            window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        targetSection.scrollIntoView({
+            behavior: prefersReducedMotion ? 'auto' : 'smooth',
+            block: 'start'
+        });
+    }
 }
+
+window.scrollToSection = scrollToSection;

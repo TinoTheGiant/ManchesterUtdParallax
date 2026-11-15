@@ -3,172 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="description" content="">
+    <meta name="description" content="Explore the modern history of Manchester United, from the inaugural Premier League era of the early 1990s to today.">
+    <meta name="theme-color" content="#C70101">
+    <meta name="color-scheme" content="dark light">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="shortcut icon" href="/assets/logo2.jpg" type="image/x-icon">
+    <link rel="icon" href="assets/logo2.jpg" type="image/jpeg">
+    <link rel="shortcut icon" href="assets/logo2.jpg" type="image/x-icon">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-  
-    <title>The Modern History 0f Manchester Utd</title>
+    <title>The Modern History Of Manchester Utd</title>
 </head>
-
-
-
-<div class="container">
-
-
-
-   
-
 <body>
+    <div class="container">
+        <header id="navbar">
+            <a id="nav-logo" href="index.html"><img src="assets/logo.png" alt="Manchester United Crest" class="nav-crest" width="40" height="40"><h3>Manchester United History</h3></a>
+            <nav aria-label="Primary navigation">
+                <ul id="nav-links">
+                    <li class="active"><a id="active" href="index.html" aria-current="page"><span class="material-symbols-outlined nav-icon" aria-hidden="true">home</span>Home</a></li>
+                    <li><a href="legends.html"><span class="material-symbols-outlined nav-icon" aria-hidden="true">emoji_events</span>Legends</a></li>
+                </ul>
+            </nav>
+            <div class="nav-progress-container" role="progressbar" aria-label="Page scroll progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="nav-progress-bar" class="nav-progress-bar"></div></div>
+        </header>
 
-    <header id="navbar">
-        <a id="nav-logo" href="index.html"><h3>Manchester United History</h3></a>
-        <nav>
-            <ul id="nav-links">
-                <li class="active"><a id="active" href="index.html">Home</a></li>
-                <li><a href="legends.html">Legends</a></li> 
-            </ul>
-        </nav>
-    </header>
- 
- 
-      <main class="main">
+        <main class="main">
+            <!-- section1 -->
+            <section class="section1" id="explore" data-slide="0" data-speed="50" aria-label="Hero banner">
+                <h1>Modern History Of Manchester Utd</h1>
+                <button type="button" onclick="scrollToSection()" aria-label="Explore Manchester United history timeline">Explore <span class="material-symbols-outlined" aria-hidden="true">expand_more</span><i class="fa-solid fa-chevron-down" aria-hidden="true" style="display:none"></i></button>
+            </section>
 
-        <!-- section1-->
-        <section class="section1" id="explore"  data-slide="0" data-speed="50">
-           <h1>Modern History Of Manchester Utd</h1>
-           <button onclick="scrollToSection()">Explore</button>
-      
-        </section>
-        <aside class="toc"  id="hidden-section">
-            <ul>
-             <li data-slide="1"><a href="#early90s">Early 1990s</a></li>
-             <li data-slide="2"><a href="#mid90s">Mid 1990s</a></li>
-             <li data-slide="3"><a href="#late90s">Late 1990s</a></li>
-             <li data-slide="4"><a href="#early2000s">Early 2000s</a></li>
-             <li data-slide="5"><a href="#mid2000s">Mid 2000s</a></li>
-             <li data-slide="6"><a href="#late2000s">Late 2000s</a></li>
-             <li data-slide="7"><a href="#early2010s">Early 2010s</a></li>
-             <li data-slide="8"><a href="#mid2010s">Mid 2010s</a> </li>
-             <li data-slide="9"><a href="#late2010s">Late 2010s</a></li>
-             <li data-slide="10"><a href="#early2020s">Early 2020s</a></li>
-             <li data-slide="11"><a href="#today">Today</a></li>  
-            </ul>
-        </aside>
-     
-       
-        <audio id="scroll-audio" src="/audio/GloryGloryManUtd.mp3" preload="auto"></audio>
-        <button id="audio-toggle" class="audio-toggle"><span class="material-symbols-outlined">
-            music_note
-            </span></button>
+            <aside class="toc" id="hidden-section" aria-label="Timeline table of contents">
+                <ul>
+                    <li data-slide="1"><a href="#early90s">Early 1990s</a></li>
+                    <li data-slide="2"><a href="#mid90s">Mid 1990s</a></li>
+                    <li data-slide="3"><a href="#late90s">Late 1990s</a></li>
+                    <li data-slide="4"><a href="#early2000s">Early 2000s</a></li>
+                    <li data-slide="5"><a href="#mid2000s">Mid 2000s</a></li>
+                    <li data-slide="6"><a href="#late2000s">Late 2000s</a></li>
+                    <li data-slide="7"><a href="#early2010s">Early 2010s</a></li>
+                    <li data-slide="8"><a href="#mid2010s">Mid 2010s</a></li>
+                    <li data-slide="9"><a href="#late2010s">Late 2010s</a></li>
+                    <li data-slide="10"><a href="#early2020s">Early 2020s</a></li>
+                    <li data-slide="11"><a href="#today">Today</a></li>
+                </ul>
+            </aside>
 
-        <!-- section2-->
-        <section class="section2 sections" id="early90s"  data-slide="1" data-speed="50" >
+            <audio id="scroll-audio" src="audio/GloryGloryManUtd.mp3" preload="auto"></audio>
+            <button type="button" id="audio-toggle" class="audio-toggle" aria-label="Toggle background audio" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">music_note</span><i class="fa-solid fa-music" aria-hidden="true" style="display:none"></i></button>
 
-       
+            <!-- section2 -->
+            <section class="section2 sections" id="early90s" data-slide="1" data-speed="50" aria-label="Early 1990s">
+                <h1>Early 1990s</h1>
+                <hr>
+                <p>Manchester United enjoyed immediate success in the Premier League era, winning their first league title in the inaugural season of 1992-1993 under the management of Sir Alex Ferguson.</p>
+            </section>
 
-            <h1>Early 1990s</h1>
-            <hr>
-            <br>
-            <p>Manchester United enjoyed immediate success in the Premier League era, winning their first 
-                league title in the inaugural season of 1992-1993 under the management of Sir Alex Ferguson.</p>
-        </section>
+            <!-- section3 -->
+            <section class="section3 sections" id="mid90s" data-slide="2" data-speed="50" aria-label="Mid 1990s">
+                <h1>Mid 1990s</h1>
+                <hr>
+                <p>The club went on to secure a "hat-trick" of Premier League titles in the 1993-1994, 1994-1995, and 1995-1996 seasons, including memorable League and FA Cup "Doubles" in 1994 and 1996.</p>
+            </section>
 
-      <!-- section3-->
-           <section class="section3 sections" id="mid90s"  data-slide="2" data-speed="50">
-            
-            <h1>Mid 1990s</h1>
-            <hr>
-            <p>The club went on to secure a "hat-trick" of Premier League titles in the 1993-1994, 1994-1995, and 1995-1996 seasons.</p>
-        </section>
+            <!-- section4 -->
+            <section class="section4 sections" id="late90s" data-slide="3" data-speed="50" aria-label="Late 1990s">
+                <h1>Late 1990s</h1>
+                <hr>
+                <p>During this era, Manchester United also achieved the famous "Treble" in the 1998-1999 season, winning the Premier League, FA Cup, and UEFA Champions League in the same campaign.</p>
+            </section>
 
-        <!-- section4-->
-        <section class="section4  sections" id="late90s"  data-slide="3" data-speed="50">
-           
-            <h1>Late 1990s</h1>
-            <hr>
-            <p>During this era, Manchester United also achieved the famous "Treble" in the 1998-1999 season, winning the Premier
-                 League, FA Cup, and UEFA Champions League in the same campaign.</p>
-        </section>
+            <!-- section5 -->
+            <section class="section5 sections" id="early2000s" data-slide="4" data-speed="50" aria-label="Early 2000s">
+                <h1>Early 2000s</h1>
+                <hr>
+                <p>United continued their domestic dominance at the turn of the millennium, winning Premier League titles in 1999-2000, 2000-2001, and 2002-2003, powered by prolific goalscorer Ruud van Nistelrooy and the iconic Class of '92.</p>
+            </section>
 
-        <!-- section5-->
-        <section class="section5  sections" id="early2000s"  data-slide="4" data-speed="50" >
-            
+            <!-- section6 -->
+            <section class="section6 sections" id="mid2000s" data-slide="5" data-speed="50" aria-label="Mid 2000s">
+                <h1>Mid 2000s</h1>
+                <hr>
+                <p>A period of rebuilding under Sir Alex Ferguson brought the arrivals of Wayne Rooney, Cristiano Ronaldo, Nemanja Vidić, and Patrice Evra, culminating in the 2003-2004 FA Cup, the 2005-2006 League Cup, and the return of the Premier League trophy in 2006-2007.</p>
+            </section>
 
-        </section>
+            <!-- section7 -->
+            <section class="section7 sections" id="late2000s" data-slide="6" data-speed="50" aria-label="Late 2000s">
+                <h1>Late 2000s</h1>
+                <hr>
+                <p>Led by Ballon d'Or winner Cristiano Ronaldo and Wayne Rooney, Manchester United won three consecutive Premier League titles from 2006 to 2009, conquered Europe in the 2007-2008 UEFA Champions League final in Moscow, and lifted the FIFA Club World Cup in 2008.</p>
+            </section>
 
-        <!-- section6-->
-        <section class="section6  sections" id="mid2000s"  data-slide="5" data-speed="50" >
-            
-        </section>
+            <!-- section8 -->
+            <section class="section8 sections" id="early2010s" data-slide="7" data-speed="50" aria-label="Early 2010s">
+                <h1>Early 2010s</h1>
+                <hr>
+                <p>Manchester United surpassed Liverpool's record with their 19th league title in 2010-2011 and captured an historic 20th top-flight crown in 2012-2013—inspired by Robin van Persie—marking a triumphant farewell for legendary manager Sir Alex Ferguson after 26 years in charge.</p>
+            </section>
 
-        <!-- section7-->
-        <section class="section7  sections" id="mid2000s"   data-slide="6" data-speed="50">
-            
+            <!-- section9 -->
+            <section class="section9 sections" id="mid2010s" data-slide="8" data-speed="50" aria-label="Mid 2010s">
+                <h1>Mid 2010s</h1>
+                <hr>
+                <p>Following Sir Alex Ferguson's retirement, the club navigated a period of transition under David Moyes and Louis van Gaal, winning the 2015-2016 FA Cup at Wembley before appointing José Mourinho to lead a new push for major silverware.</p>
+            </section>
 
-        </section>
+            <!-- section10 -->
+            <section class="section10 sections" id="late2010s" data-slide="9" data-speed="50" aria-label="Late 2010s">
+                <h1>Late 2010s</h1>
+                <hr>
+                <p>In 2016-2017, Manchester United lifted the FA Community Shield, EFL Cup, and their first-ever UEFA Europa League trophy in Stockholm, completing the full set of major European club honors before club legend Ole Gunnar Solskjær returned as manager in late 2018.</p>
+            </section>
 
-        <!-- section8-->
-        <section class="section8  sections" id="late2000s"   data-slide="7" data-speed="50">
-            
+            <!-- section11 -->
+            <section class="section11 sections" id="early2020s" data-slide="10" data-speed="50" aria-label="Early 2020s">
+                <h1>Early 2020s</h1>
+                <hr>
+                <p>Sparked by the arrival of Bruno Fernandes and the return of Cristiano Ronaldo, United achieved back-to-back top-three Premier League finishes and reached the 2021 UEFA Europa League final before Erik ten Hag took charge and ended a six-year trophy drought with the 2022-2023 Carabao Cup.</p>
+            </section>
 
-        </section>
+            <!-- section12 -->
+            <section class="section12 sections" id="today" data-slide="11" data-speed="50" aria-label="Today">
+                <h1>Today</h1>
+                <hr>
+                <p>After triumphing over rivals Manchester City to win the 2023-2024 FA Cup—the club's 13th FA Cup title—Manchester United continues to build for the future, blending world-class talent with celebrated academy graduates in pursuit of returning to the pinnacle of English and European football.</p>
+            </section>
+        </main>
 
-        <!-- section9-->
-        <section class="section9  sections" id="early2010s"   data-slide="8" data-speed="50">
-          
+        <footer id="footer">
+            <div class="column">
+                <ul aria-label="Footer navigation">
+                    <li><a href="index.html"><span class="material-symbols-outlined" aria-hidden="true">home</span>Home</a></li>
+                    <li><a href="#early90s"><span class="material-symbols-outlined" aria-hidden="true">history_edu</span>About</a></li>
+                    <li><a href="legends.html"><span class="material-symbols-outlined" aria-hidden="true">emoji_events</span>Legends</a></li>
+                    <li><a href="#footer"><span class="material-symbols-outlined" aria-hidden="true">mail</span>Contact</a></li>
+                    <li><a href="#explore"><span class="material-symbols-outlined" aria-hidden="true">work</span>Portfolio</a></li>
+                </ul>
+            </div>
 
-        </section>
+            <div class="column">
+                <i>&copy;2023 Tino Kaseke</i>
+            </div>
 
-        <!-- section10-->
-        <section class="section10  sections" id="mid2010s"   data-slide="9" data-speed="50">
-           
-
-        </section>
-
-        <!-- section11-->
-        <section class="section11 sections" id="early2020s"   data-slide="10" data-speed="50">
-            
-        </section>
-
-        <!-- section12-->
-        <section class="section12 sections" id="today"   data-slide="11" data-speed="50">
-           
-
-        </section>
-      </main>
-  
-
-</body>
-<script src="/js/header.js"></script>
-<script src="/js/button.js"></script>
-<script src="/js/scroll.js"></script>
-<script src="/js/hide.js"></script>
-<script src="/js/audio.js"></script>
-
-
-<footer>
-
-    <div class="column">
-        <ul>
-            <li><a href="/index.html">Home</a></li>
-            <li><a href="/about.html">About</a></li>
-            <li><a href="legends.html">Legends</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href=""></a>Portfolio</li>
-        </ul>
+            <div class="column">
+                <img src="assets/logo.png" alt="Manchester United Logo" loading="lazy" decoding="async">
+            </div>
+        </footer>
     </div>
 
-<div class="column">
-    <i>&copy;2023 Tino Kaseke</i>
-</div>
-
-<div class="column">
-<img src="/assets/logo.png" alt="logo">
-</div>
-    
-</footer>
-</div>
-
+    <script src="js/header.js"></script>
+    <script src="js/button.js"></script>
+    <script src="js/scroll.js"></script>
+    <script src="js/hide.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/club-data-ui.js"></script>
+</body>
 </html>

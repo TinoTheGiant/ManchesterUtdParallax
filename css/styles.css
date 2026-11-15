@@ -1,691 +1,955 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css');
 
-@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap');
-
-
-html{
-    
-    scroll-behavior: smooth;
+:root {
+  box-sizing: border-box;
+  --mu-red: #C70101;
+  --mu-red-bright: #DA291C;
+  --mu-red-dark: #9E0000;
+  --mu-black: #141414;
+  --mu-charcoal: #1A1A1A;
+  --mu-surface: #242424;
+  --mu-light-bg: #F8F8F8;
+  --mu-white: #FFFFFF;
+  --mu-grey: #D0D0D0;
+  --mu-gold: #FBE122;
+  --glass-bg: rgba(26, 26, 26, 0.9);
+  --glass-bg-light: rgba(26, 26, 26, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --font-display: 'Oswald', 'Bebas Neue', 'Barlow Condensed', sans-serif;
+  --font-body: 'Source Sans 3', 'Montserrat', Arial, Helvetica, sans-serif;
+  --card-max-width: 780px;
+  --transition-fast: 0.2s ease;
+  --transition-smooth: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-:root {                                             
-    box-sizing: border-box;                           
-  }   
-  
+html {
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+}
 
- 
- 
- * { margin: 0; padding: 0; }
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
 
- 
-                                                      
-  *,                                                  
-  ::before,                                           
-  ::after {                                           
-    box-sizing: inherit;                              
-  }                                                   
-  
-  body { 
-    font-family: Arial, Helvetica, sans-serif;   
-    color: white;                                         
-    background-color:#D30023;                        
-    width: calc(100% - 20px);
-    font-size:xx-large;
-   
-  }   
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: var(--mu-white);
+  background-color: var(--mu-black);
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-size: clamp(1rem, 1.1vw, 1.12rem);
+  line-height: 1.6;
+}
 
-  .container {                                        
-    max-width: 1650px;                                
-    margin:0 auto ;  
-    display: flex;
-    flex-wrap: wrap;   
-    flex-direction: column; 
-    box-sizing: border-box;
-    border-radius: 10px;
-  background: #D30023;
-  
-  padding: 20px;
-  }  
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--mu-white);
+}
 
+p {
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
 
+.container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  border-radius: 0;
+  background-color: var(--mu-black);
+  padding: 0;
+}
 
-/*Navigation*/
-
-header{
+/* Official ManUtd.com Primary Red Header & Nav Scroll Progress Bar */
+header,
+#navbar {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
-  padding: 10px;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 0 32px;
+  min-height: 64px;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  background-color: var(--mu-red);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+  border-bottom: none;
+  z-index: 1001;
+  transition: background-color var(--transition-smooth), box-shadow var(--transition-smooth), transform var(--transition-smooth);
+}
+
+header.scrolled,
+#navbar.scrolled,
+header.sticky,
+#navbar.sticky {
+  position: sticky;
+  top: 0;
+  background-color: rgba(199, 1, 1, 0.96);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  border-radius: 0;
+}
+
+.nav-progress-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  z-index: 1002;
+  pointer-events: none;
+}
+
+#nav-progress-bar,
+.nav-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #FFFFFF 0%, #FBE122 60%, #FFFFFF 100%);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  transition: width 0.1s linear;
 }
 
 nav {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  min-height: 64px;
 }
 
-header #nav-logo{
+header #nav-logo,
+#nav-logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
   text-decoration: none;
-  color: white;
+  color: var(--mu-white);
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: clamp(1.2rem, 1.8vw, 1.55rem);
+  transition: opacity var(--transition-fast);
 }
 
-.active{
-  background-color: dodgerblue;
-  padding: 10px 7px 10px 7px;
-  border-radius: 10px;
-  border-style: outset navy 3px;
-  box-shadow: 2px -5px 10px 2px rgba(0, 0, 0, 0.2); /* Shadow effect at the bottom */
-  
+.nav-crest,
+#nav-logo img {
+  height: 40px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  transition: transform var(--transition-fast);
 }
 
-
-.active a:focus,.active:hover{
-background-color: #409cff;
-transition: 0.5s;
+#nav-logo h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: clamp(1.25rem, 1.8vw, 1.6rem);
+  line-height: 1.1;
+  color: var(--mu-white);
+  margin: 0;
 }
 
-header li {
+header #nav-logo:hover,
+#nav-logo:hover {
+  color: var(--mu-white);
+  opacity: 0.92;
+}
+
+header #nav-logo:hover .nav-crest,
+#nav-logo:hover img {
+  transform: scale(1.06);
+}
+
+#nav-links {
+  display: flex;
+  align-items: stretch;
+  gap: 4px;
   list-style: none;
-  display: inline-block;
-  padding: 0 20px;
+  font-family: var(--font-display);
+  min-height: 64px;
+}
+
+header li,
+#nav-links li {
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  padding: 0 18px;
+  min-height: 64px;
+  border-radius: 0;
+  border: none;
+  border-bottom: 4px solid transparent;
+  background-color: transparent;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+header li:hover,
+#nav-links li:hover {
+  background-color: rgba(0, 0, 0, 0.14);
+  border-bottom: 4px solid #FFFFFF;
+}
+
+header li.active,
+#nav-links li.active,
+#nav-links .active {
+  background-color: rgba(0, 0, 0, 0.18);
+  padding: 0 18px;
+  border-radius: 0;
+  border: none;
+  border-bottom: 4px solid #FFFFFF;
+}
+
+header li.active:hover,
+#nav-links li.active:hover,
+#nav-links .active:hover,
+.active a:focus {
+  background-color: var(--mu-red-dark);
+  border-bottom: 4px solid #FFFFFF;
+  transition: background-color var(--transition-fast);
 }
 
 #nav-links li a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-display);
   text-decoration: none;
-  color:white;
- 
+  color: var(--mu-white);
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  transition: color var(--transition-fast), opacity var(--transition-fast);
 }
 
-#nav-links li a:hover{
-  color:gold;
-  transition: 0.5s;
+#nav-links li a .material-symbols-outlined,
+button .material-symbols-outlined,
+footer .column li a .material-symbols-outlined,
+.nav-icon {
+  font-size: 1.15em;
+  line-height: 1;
+  vertical-align: middle;
 }
 
+#nav-links li a:hover,
+#nav-links li.active a,
+#nav-links li.active:hover a {
+  color: var(--mu-white);
+}
 
- 
+/* Table of contents sidebar */
+#hidden-section {
+  display: none;
+}
 
-
-
-
-/*Table of contents*/
-aside{
-  display: flex;
-  background-color: transparent;
-  padding: 25px;
- text-align: center;
- position: fixed;
-  top: 12rem;
-  align-self: start;
+aside,
+.toc {
+  background: linear-gradient(180deg, rgba(26, 26, 26, 0.94) 0%, rgba(20, 20, 20, 0.96) 100%);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  padding: 12px 14px;
+  text-align: left;
+  position: fixed;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  max-height: calc(100vh - 150px);
+  overflow-y: auto;
+  border-radius: 4px;
+  border: 1px solid var(--glass-border);
+  border-left: 3px solid var(--mu-red);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.7);
   z-index: 1000;
+  flex-direction: column;
+  transition: opacity var(--transition-smooth);
 }
 
-.toc ul{
+.toc ul {
   list-style: none;
-}
-
-
-.toc li a{
-  font-family: 'Amatic SC', cursive;
-  list-style: none;
-  text-decoration: none;
-  color: white;
-  font-weight: 600;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-}
-
- .toc li a:focus,.toc li a:hover{
-font-weight: 900;
-transition: 0.3s;
-text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.2);
-color: gold;
-}
-
-
-aside li.active a {
-  font-weight: bold;
-  font-weight: 900;
-transition: 0.3s;
-text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.2);
-color: goldenrod;
-}
-
-/*Main*/
-main{
   display: flex;
   flex-direction: column;
- padding: 25px; 
+  gap: 3px;
 }
 
+.toc li {
+  list-style: none;
+  border-radius: 2px;
+  border-left: 3px solid transparent;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
 
+.toc li a {
+  font-family: var(--font-display);
+  font-size: clamp(0.92rem, 1.1vw, 1.05rem);
+  line-height: 1.3;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  list-style: none;
+  text-decoration: none;
+  color: var(--mu-grey);
+  font-weight: 700;
+  display: block;
+  padding: 5px 12px;
+  white-space: nowrap;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
 
-/*Button*/
-button{
+.toc li a:focus,
+.toc li a:hover {
+  font-weight: 700;
+  color: var(--mu-white);
+  transform: translateX(3px);
+}
+
+aside li.active,
+.toc li.active {
+  background-color: var(--mu-red);
+  border-left: 3px solid var(--mu-white);
+  border-radius: 2px;
+  padding: 0;
+  box-shadow: 0 4px 12px rgba(199, 1, 1, 0.45);
+}
+
+aside li.active a,
+.toc li.active a {
+  font-weight: 700;
+  color: var(--mu-white);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Main */
+main,
+.main {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  width: 100%;
+}
+
+/* Buttons (ManUtd.com Signature CTA) */
+button {
   align-items: center;
-  background-color: dodgerblue;
-  color: white;
-  padding: 15px 32px;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--mu-red);
+  color: var(--mu-white);
+  padding: 14px 36px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
+  display: inline-flex;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   cursor: pointer;
-  position: absolute;
-  margin-left: 40% ;
-  margin-top: 3%;
-  border-radius: 8px;
-  
-
+  border-radius: 2px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+  transition: background-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-button:hover{
-    color: gold;
-    background-color: #409cff;
-    transition: 2s;
+button:hover {
+  color: var(--mu-white);
+  background-color: var(--mu-red-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(199, 1, 1, 0.45);
 }
 
+.section1 button {
+  position: relative;
+  z-index: 2;
+  margin: 24px auto 0;
+  background-color: var(--mu-red);
+  color: var(--mu-white);
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
 
-.audio-toggle {
+.section1 button:hover {
+  background-color: var(--mu-red-dark);
+  color: var(--mu-white);
+}
+
+@keyframes muPulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 14px rgba(199, 1, 1, 0.55), 0 4px 16px rgba(0, 0, 0, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(218, 41, 28, 0.85), 0 4px 20px rgba(199, 1, 1, 0.5);
+  }
+}
+
+.audio-toggle,
+.audio-toggle.active,
+.audio-toggle.playing {
   position: fixed;
-  left: 10px;
-  top: 95%;
-  transform: translateY(-90%);
-  background-color: #D30023;
-  color: white;
-  border: none;
-  padding: 10px 20px;
+  left: 16px;
+  bottom: 20px;
+  top: auto;
+  transform: none;
+  margin: 0;
+  background-color: var(--mu-charcoal);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  color: var(--mu-white);
+  border: 2px solid var(--mu-red);
+  padding: 10px 18px;
   cursor: pointer;
   z-index: 1000;
-  border-radius: 5px;
-  font-size: 16px;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+}
+
+.audio-toggle.playing,
+.audio-toggle.active {
+  background-color: var(--mu-red);
+  border-color: var(--mu-white);
+  color: var(--mu-white);
+  box-shadow: 0 0 16px rgba(199, 1, 1, 0.6);
+  animation: muPulseGlow 2.4s infinite ease-in-out;
 }
 
 .audio-toggle:hover {
-  background-color: #A0001B;
+  background-color: var(--mu-red-dark);
+  border-color: var(--mu-white);
+  color: var(--mu-white);
+  transform: translateY(-2px);
 }
 
-
-
-
-  /*Section1*/
-  .section1 {
-
-  background-image: url(/assets/oldtraffoird.jpg);
-    /* Set a specific height */
-  min-height:1000px;
+/* Hero Section (.section1) */
+.section1 {
+  background-color: var(--mu-black);
+  background-image: url('../assets/oldtraffoird.jpg');
+  min-height: 92vh;
   width: 100%;
-  /* Create the parallax scrolling effect */
-  /*background-attachment: fixed;*/
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size:cover;
-  position: relative;
-
-
-  }
-
-  .section1 h1{
-    padding-top: 25%;
-    text-align: center;
-    color: black;
-    text-shadow: white 1px 1px 2px;
-  }
-
-  #hidden-section {
-    display: none;
-}
-
-  /*Sections*/
-  .section2 {
-  background-image: url(/assets/man-utd-champions-1992-1993-v2.webp);
-    /* Set a specific height */
-  min-height: 1000px;
-  width: 100%;
-
-  /* Create the parallax scrolling effect */
   background-attachment: fixed;
-  background-position: center;
+  background-position: 50% 35%;
   background-repeat: no-repeat;
-  background-size: cover;
-  }
-
-
-    /*Sections*/
-    .section3 {
-    
-    
-      background-image: url(/assets/1996.JPG);
-        /* Set a specific height */
-      min-height: 1000px;
-      width: 100%;
-    
-      /* Create the parallax scrolling effect */
-      background-attachment: fixed;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      }
-
-      
-  /*Sections*/
-  .section4 {
-   
-  
-    background-image: url(/assets/2006and07.jpg);
-      /* Set a specific height */
-    min-height: 1000px;
-    width: 100%;
-  
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    }
-  
-
-   /*Sections*/
-   .section5 {
-   
-  
-    background-image: url(/assets/2007and08.jpg);
-      /* Set a specific height */
-    min-height: 1000px;
-    width: 100%;
-  
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    }
-
-    
-  /*Sections*/
-  .section6 {
-   
-  
-    background-image: url(/assets/2009and10.jpg);
-      /* Set a specific height */
-    min-height: 1000px;
-    width: 100%;
-  
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    }
-
-    
-      /*Sections*/
-  .section7 {
-   
-  
-    background-image: url(/assets/2012and13.webp);
-      /* Set a specific height */
-    min-height: 1000px;
-    width: 100%;
-  
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    }
-
-    
-      /*Sections*/
-  .section8 {
-   
-  
-    background-image: url(/assets/2013and14.jpg);
-      /* Set a specific height */
-    min-height: 1000px;
-    width: 100%;
-  
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    }
-
-
-      /*Sections*/
-  .section9 {
-    
-  
-    background-image: url(/assets/2015and16.jpg);
-      /* Set a specific height */
-    min-height: 1000px;
-    width: 100%;
-  
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    }
-
-      /*Sections*/
-  .section10 {
-   
-  
-    background-image: url(/assets/2017and17.jpg);
-      /* Set a specific height */
-    min-height: 1000px;
-    width: 100%;
-  
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    }
-
-      /*Sections*/
-  .section11 {
-    
-  
-    background-image: url(/assets/2019better.jpg);
-      /* Set a specific height */
-    min-height: 1000px;
-    width: 100%;
-  
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size:cover;
-    
-
-   
-    }
-
-      /*Sections*/
-  .section12 {
-    
-  
-    background-image: url(/assets/today.jpg);
-      /* Set a specific height */
-    min-height: 1000px;
-    width: 100%;
-  
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    }
-  
-  
-/*Footer*/
-footer{
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    background-color:#D30023 ;
-    flex-direction: row;
-    color: white;
-    padding-top: 5px;
-    padding-bottom: 5px;
-  
-
+  background-size: contain;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 24px;
+  overflow: hidden;
 }
 
-footer .column{
-    flex-direction: column;
-    padding-left: 35px;
-    padding-right: 35px;
-   
+.section1::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 38%, rgba(0, 0, 0, 0.08) 0%, rgba(20, 20, 20, 0.72) 85%),
+    linear-gradient(90deg, rgba(20, 20, 20, 0.75) 0%, rgba(20, 20, 20, 0.08) 15%, rgba(20, 20, 20, 0.08) 85%, rgba(20, 20, 20, 0.75) 100%),
+    linear-gradient(180deg, rgba(20, 20, 20, 0.35) 0%, rgba(20, 20, 20, 0.15) 45%, rgba(20, 20, 20, 0.88) 100%);
+  pointer-events: none;
+  z-index: 1;
 }
 
-footer .column li a{
-  text-decoration: none;
-  color: white;
-  
+.section1 h1 {
+  position: relative;
+  z-index: 2;
+  padding: 24px 38px;
+  max-width: 900px;
+  text-align: center;
+  color: var(--mu-white);
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4.6vw, 3.6rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.9);
+  background: linear-gradient(180deg, rgba(26, 26, 26, 0.9) 0%, rgba(20, 20, 20, 0.95) 100%);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-top: 4px solid var(--mu-red);
+  border-bottom: 4px solid var(--mu-red);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.65);
 }
 
+/* Shared Parallax Section Layout & ManUtd.com Editorial Feature Card Styling */
+.sections,
+.section2,
+.section3,
+.section4,
+.section5,
+.section6,
+.section7,
+.section8,
+.section9,
+.section10,
+.section11,
+.section12,
+.legend1,
+.legend2,
+.legend3,
+.legend4,
+.legend5,
+.legend6,
+.legend7,
+.legend8,
+.legend9,
+.legend10,
+.legend11,
+.legend12,
+.legend13,
+.legend14,
+.legend15,
+.legend16,
+.legend17 {
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--mu-black);
+  background-attachment: fixed;
+  background-position: 50% 25%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 80px 40px 70px 220px;
+}
+
+.sections::before,
+.section2::before,
+.section3::before,
+.section4::before,
+.section5::before,
+.section6::before,
+.section7::before,
+.section8::before,
+.section9::before,
+.section10::before,
+.section11::before,
+.section12::before,
+.legend1::before,
+.legend2::before,
+.legend3::before,
+.legend4::before,
+.legend5::before,
+.legend6::before,
+.legend7::before,
+.legend8::before,
+.legend9::before,
+.legend10::before,
+.legend11::before,
+.legend12::before,
+.legend13::before,
+.legend14::before,
+.legend15::before,
+.legend16::before,
+.legend17::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 38%, rgba(0, 0, 0, 0.08) 0%, rgba(20, 20, 20, 0.72) 85%),
+    linear-gradient(90deg, rgba(20, 20, 20, 0.78) 0%, rgba(20, 20, 20, 0.06) 16%, rgba(20, 20, 20, 0.06) 84%, rgba(20, 20, 20, 0.78) 100%),
+    linear-gradient(180deg, rgba(20, 20, 20, 0.35) 0%, rgba(20, 20, 20, 0.15) 45%, rgba(20, 20, 20, 0.88) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sections h1,
+.section2 h1,
+.section3 h1,
+.section4 h1,
+.section5 h1,
+.section6 h1,
+.section7 h1,
+.section8 h1,
+.section9 h1,
+.section10 h1,
+.section11 h1,
+.section12 h1,
+.legend1 h1,
+.legend2 h1,
+.legend3 h1,
+.legend4 h1,
+.legend5 h1,
+.legend6 h1,
+.legend7 h1,
+.legend8 h1,
+.legend9 h1,
+.legend10 h1,
+.legend11 h1,
+.legend12 h1,
+.legend13 h1,
+.legend14 h1,
+.legend15 h1,
+.legend16 h1,
+.legend17 h1 {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--card-max-width);
+  background: linear-gradient(180deg, rgba(26, 26, 26, 0.92) 0%, rgba(20, 20, 20, 0.95) 100%);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  color: var(--mu-white);
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.2vw, 2.6rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.15;
+  text-align: center;
+  padding: 22px 28px 14px;
+  border-radius: 2px 2px 0 0;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-top: 4px solid var(--mu-red);
+  border-bottom: none;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+  margin: 0;
+  transform: translateY(10px);
+  opacity: 0.92;
+  transition: transform var(--transition-smooth), opacity var(--transition-smooth), border-color var(--transition-smooth);
+}
+
+.sections hr,
+.section2 hr,
+.section3 hr,
+.section4 hr,
+.section5 hr,
+.section6 hr,
+.section7 hr,
+.section8 hr,
+.section9 hr,
+.section10 hr,
+.section11 hr,
+.section12 hr,
+.legend1 hr,
+.legend2 hr,
+.legend3 hr,
+.legend4 hr,
+.legend5 hr,
+.legend6 hr,
+.legend7 hr,
+.legend8 hr,
+.legend9 hr,
+.legend10 hr,
+.legend11 hr,
+.legend12 hr,
+.legend13 hr,
+.legend14 hr,
+.legend15 hr,
+.legend16 hr,
+.legend17 hr {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--card-max-width);
+  border: none;
+  border-top: 4px solid var(--mu-red);
+  background: var(--mu-charcoal);
+  margin: 0;
+  transform: translateY(10px);
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.sections br {
+  display: none;
+}
+
+.sections p,
+.section2 p,
+.section3 p,
+.section4 p,
+.section5 p,
+.section6 p,
+.section7 p,
+.section8 p,
+.section9 p,
+.section10 p,
+.section11 p,
+.section12 p,
+.legend1 p,
+.legend2 p,
+.legend3 p,
+.legend4 p,
+.legend5 p,
+.legend6 p,
+.legend7 p,
+.legend8 p,
+.legend9 p,
+.legend10 p,
+.legend11 p,
+.legend12 p,
+.legend13 p,
+.legend14 p,
+.legend15 p,
+.legend16 p,
+.legend17 p {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--card-max-width);
+  background: linear-gradient(180deg, rgba(26, 26, 26, 0.92) 0%, rgba(20, 20, 20, 0.96) 100%);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  color: var(--mu-white);
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.35vw, 1.15rem);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.75;
+  text-align: center;
+  padding: 18px 32px 24px;
+  border-radius: 0 0 2px 2px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-top: none;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.65);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85);
+  margin: 0;
+  transform: translateY(10px);
+  opacity: 0.92;
+  transition: transform var(--transition-smooth), opacity var(--transition-smooth), border-color var(--transition-smooth);
+}
+
+.sections.in-view h1,
+.sections.in-view hr,
+.sections.in-view p {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Timeline Sections (index.html) */
+.section2 {
+  background-image: url('../assets/man-utd-champions-1992-1993-v2.webp');
+  background-size: min(100%, 1400px) auto;
+}
+
+.section3 {
+  background-image: url('../assets/1996.JPG');
+  background-size: min(100%, 960px) auto;
+}
+
+.section4 {
+  background-image: url('../assets/2006and07.jpg');
+  background-size: contain;
+}
+
+.section5 {
+  background-image: url('../assets/2007and08.jpg');
+  background-size: contain;
+}
+
+.section6 {
+  background-image: url('../assets/2009and10.jpg');
+}
+
+.section7 {
+  background-image: url('../assets/2012and13.webp');
+  background-size: min(100%, 1400px) auto;
+}
+
+.section8 {
+  background-image: url('../assets/2013and14.jpg');
+}
+
+.section9 {
+  background-image: url('../assets/2015and16.jpg');
+}
+
+.section10 {
+  background-image: url('../assets/2017and17.jpg');
+}
+
+.section11 {
+  background-image: url('../assets/2019better.jpg');
+}
+
+.section12 {
+  background-image: url('../assets/today.jpg');
+}
+
+/* Footer */
+footer,
+#footer {
+  align-items: center;
+  justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  background-color: var(--mu-charcoal);
+  border-top: 4px solid var(--mu-red);
+  flex-direction: row;
+  color: var(--mu-grey);
+  font-family: var(--font-body);
+  padding: 36px 32px;
+  width: 100%;
+}
+
+footer .column {
+  display: flex;
+  flex-direction: column;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+footer .column ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 
 footer .column li {
-  list-style: none ;
+  list-style: none;
 }
 
-  /*********************************************************************************************************/
-  /*CSS unique to legends,html*/
+footer .column li a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 1.1rem;
+  text-decoration: none;
+  color: var(--mu-white);
+  font-weight: 700;
+  transition: color var(--transition-fast), opacity var(--transition-fast);
+}
 
-     /*Section1*/
-     .legend1 {
-        background-image: url(/assets/legends/siralex.jpg);
-        /* Set a specific height */
-    min-height: 1000px;
-    width: 100%;
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-      }
+footer .column li a:hover {
+  color: var(--mu-white);
+  opacity: 0.85;
+}
 
-          /*Section2*/
-     .legend2 {
-        background-image: url(/assets/legends/keane.jpg);
-        /* Set a specific height */
-    min-height: 1000px;
-    width: 100%;
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-      }
+footer .column i {
+  font-style: normal;
+  color: var(--mu-grey);
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
 
+footer .column img {
+  max-width: 96px;
+  height: auto;
+  display: block;
+}
 
-                /*Section3*/
-     .legend3 {
-       
-        background-image: url(/assets/legends/beckham.jpg);
-        /* Set a specific height */
-    min-height: 1000px;
-    width: 100%;
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-      }
+/*********************************************************************************************************/
+/* CSS unique to legends.html */
 
+.legend1 {
+  background-image: url('../assets/legends/siralex.jpg');
+}
 
-                    /*Section4*/
-     .legend4 {
-        background-image: url(/assets/legends/scholes.jpg);
-        /* Set a specific height */
-    min-height: 1000px;
-    width: 100%;
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-      }
+.legend2 {
+  background-image: url('../assets/legends/keane.jpg');
+}
 
-                    /*Section5*/
-     .legend5 {
-        background-image: url(/assets/legends/cantona.jpg);
-        /* Set a specific height */
-    min-height: 1000px;
-    width: 100%;
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-      }
+.legend3 {
+  background-image: url('../assets/legends/beckham.jpg');
+}
 
+.legend4 {
+  background-image: url('../assets/legends/scholes.jpg');
+}
 
-      .legend6 {
-        background-image: url(/assets/legends/neville.jpg);
-        /* Set a specific height */
-    min-height: 1000px;
-    width: 100%;
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-      }
+.legend5 {
+  background-image: url('../assets/legends/cantona.jpg');
+}
 
+.legend6 {
+  background-image: url('../assets/legends/neville.jpg');
+}
 
-      .legend7 {
-        background-image: url(/assets/legends/cr7.jpg);
-        /* Set a specific height */
-    min-height: 1000px;
-    width: 100%;
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-      }
-      
+.legend7 {
+  background-image: url('../assets/legends/cr7.jpg');
+}
 
-      .legend8 {
-        background-image: url(/assets/legends/Rooney.jpg);
-        /* Set a specific height */
-    min-height: 1000px;
-    width: 100%;
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-      }
+.legend8 {
+  background-image: url('../assets/legends/Rooney.jpg');
+}
 
+.legend9 {
+  background-image: url('../assets/legends/ruud.jpg');
+}
 
-      .legend9 {
-        background-image: url(/assets/legends/ruud.jpg);
-        /* Set a specific height */
-    min-height: 1000px;
-    width: 100%;
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-      }
+.legend10 {
+  background-image: url('../assets/legends/edwin.jpg');
+}
 
+.legend11 {
+  background-image: url('../assets/legends/schemeical.jpg');
+}
 
+.legend12 {
+  background-image: url('../assets/legends/ole.jpg');
+}
 
-      .legend10 {
-        background-image: url(/assets/legends/edwin.jpg);
-        /* Set a specific height */
-    min-height: 1000px;
-    width: 100%;
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-      }
+.legend13 {
+  background-image: url('../assets/legends/cole.jpg');
+}
 
+.legend14 {
+  background-image: url('../assets/legends/giggs.jpg');
+}
 
-      .legend11 {
-        background-image: url(/assets/legends/schemeical.jpg);
-        /* Set a specific height */
-    min-height: 1000px;
-    width: 100%;
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-      }
+.legend15 {
+  background-image: url('../assets/legends/rio.jpg');
+}
 
-      .legend12 {
-        background-image: url(/assets/legends/ole.jpg);
-        /* Set a specific height */
-    min-height: 1000px;
-    width: 100%;
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-      }
+.legend16 {
+  background-image: url('../assets/legends/vidic.jpg');
+}
 
-      .legend13 {
-        background-image: url(/assets/legends/cole.jpg);
-        /* Set a specific height */
-    min-height: 1000px;
-    width: 100%;
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-      }
-
-
-        .legend14 {
-        background-image: url(/assets/legends/giggs.jpg);
-        /* Set a specific height */
-    min-height: 1000px;
-    width: 100%;
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-      }
-
-
-      .legend15 {
-        background-image: url(/assets/legends/rio.jpg);
-        /* Set a specific height */
-    min-height: 1000px;
-    width: 100%;
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-      }
-
-
-      .legend15 {
-        background-image: url(/assets/legends/vidic.jpg);
-        /* Set a specific height */
-    min-height: 1000px;
-    width: 100%;
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-      }
-
-
-      .legend16 {
-        background-image: url(/assets/legends/evra.jpg);
-        /* Set a specific height */
-    min-height: 1000px;
-    width: 100%;
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-      }
+.legend17 {
+  background-image: url('../assets/legends/evra.jpg');
+}
 
 /*******************************************************************************************************/
-/* CSS unique to about.html*/
+/* CSS unique to about.html */
 
-
-.hero{
-    min-height: 100vh;
-    min-width: 100%;
-     /* Position and center the image to scale nicely on all screens */
+.hero {
+  min-height: 100vh;
+  min-width: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -694,105 +958,227 @@ footer .column li {
   align-items: center;
   justify-content: center;
 }
-    
- /* Place text in the middle of the image */
+
 .hero-text {
-    text-align: center;
-    position: absolute;
-    top: 25%;
-    left: 49%;
-    transform: translate(-50%, -50%);
-    color: white;
-
-   
-  } 
-
-
-.about-content{
-    color: black;
-    background-color: white;
-    padding: 25px;
-    
+  text-align: center;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--mu-white);
 }
 
-b{
-    color: tomato;
+.about-content {
+  color: var(--mu-white);
+  background-color: var(--mu-charcoal);
+  padding: 25px;
 }
 
-.about-content button{
-    margin-top: 0;
-    
+b {
+  color: var(--mu-red);
+}
+
+.about-content button {
+  margin-top: 0;
 }
 
 /********************************************************************************************************/
+/* Media Queries for Tablet, Mobile & Reduced Motion */
 
-/* Media Queries for Mobile Optimization */
+@media (max-width: 1024px) {
+  .sections,
+  .section2,
+  .section3,
+  .section4,
+  .section5,
+  .section6,
+  .section7,
+  .section8,
+  .section9,
+  .section10,
+  .section11,
+  .section12,
+  .legend1,
+  .legend2,
+  .legend3,
+  .legend4,
+  .legend5,
+  .legend6,
+  .legend7,
+  .legend8,
+  .legend9,
+  .legend10,
+  .legend11,
+  .legend12,
+  .legend13,
+  .legend14,
+  .legend15,
+  .legend16,
+  .legend17 {
+    padding: 60px 28px 60px 180px;
+  }
+}
+
 @media (max-width: 768px) {
   body {
-      font-size: large; /* Adjust font size for mobile */
+    font-size: 1rem;
   }
-
-  header {
-    flex-direction: row;
-    align-items: flex-start;
-    width: 100%;
-    padding: 10px 0;
-    
-}
-
-  header li {
-      display: inline-block;
-      padding: 10px 0;
-  }
-
-
-  #nav-logo {
-    font-size: 1.1em; /* Adjust logo size for mobile */
-}
-
-.section1{
-  min-height: 300px;
-}
-.section1 h1{
-  color: gold;
-
-  padding: 15px;
-  margin: 60px;
-  
-}
-
-
-.toc { 
-  display: none; /* Hide table of contents on mobile */
-}
 
   .container {
-      width: 100%;
-      padding: 10px;
+    width: 100%;
+    padding: 0;
+  }
+
+  header,
+  #navbar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 16px;
+    min-height: 56px;
+  }
+
+  header li,
+  #nav-links li {
+    display: inline-flex;
+    padding: 0 12px;
+    min-height: 56px;
+  }
+
+  #nav-logo,
+  #nav-logo h3 {
+    font-size: 1.15rem;
+  }
+
+  .nav-crest,
+  #nav-logo img {
+    height: 32px;
+  }
+
+  .toc,
+  #hidden-section {
+    display: none !important;
+  }
+
+  .section1 {
+    min-height: 70vh;
+    padding: 40px 16px;
+    background-size: contain;
+    background-position: 50% 30%;
+  }
+
+  .section1 h1 {
+    color: var(--mu-white);
+    padding: 16px 20px;
+    margin: 0;
   }
 
   .section1 button {
-    width: 33.5%;
-    padding: 15px;
-    margin: 10px auto; /* Adjust button layout for mobile */
-    position: absolute;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-    font-size: 1em; /* Adjust button font size for mobile */
+    width: auto;
+    min-width: 160px;
+    padding: 14px 28px;
+    margin: 20px auto 0;
+    position: relative;
+    left: auto;
+    transform: none;
+    font-size: 1.05rem;
   }
 
-  footer {
-      flex-direction: column;
-      text-align: center;
+  .sections,
+  .section2,
+  .section3,
+  .section4,
+  .section5,
+  .section6,
+  .section7,
+  .section8,
+  .section9,
+  .section10,
+  .section11,
+  .section12,
+  .legend1,
+  .legend2,
+  .legend3,
+  .legend4,
+  .legend5,
+  .legend6,
+  .legend7,
+  .legend8,
+  .legend9,
+  .legend10,
+  .legend11,
+  .legend12,
+  .legend13,
+  .legend14,
+  .legend15,
+  .legend16,
+  .legend17 {
+    min-height: 80vh;
+    padding: 40px 16px;
+    background-size: contain;
+    background-position: 50% 25%;
+  }
+
+  footer,
+  #footer {
+    flex-direction: column;
+    text-align: center;
+    padding: 28px 16px;
   }
 
   footer .column {
     padding: 10px 0;
+    align-items: center;
+  }
+
+  footer .column li {
+    padding: 4px 0;
+  }
 }
 
-footer .column li {
-    padding: 5px 0;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+
+  .section1,
+  .sections,
+  .section2,
+  .section3,
+  .section4,
+  .section5,
+  .section6,
+  .section7,
+  .section8,
+  .section9,
+  .section10,
+  .section11,
+  .section12,
+  .legend1,
+  .legend2,
+  .legend3,
+  .legend4,
+  .legend5,
+  .legend6,
+  .legend7,
+  .legend8,
+  .legend9,
+  .legend10,
+  .legend11,
+  .legend12,
+  .legend13,
+  .legend14,
+  .legend15,
+  .legend16,
+  .legend17 {
+    background-attachment: scroll;
+  }
 }
-}
-      
